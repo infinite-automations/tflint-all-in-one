@@ -26,7 +26,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Lint Terraform Code
-        uses: "m4s-b3n/tflint-all-in-one@v0.0.0"
+        uses: "m4s-b3n/tflint-all-in-one@v1.0.0"
         with:
           directory: "./terraform"
 ```
