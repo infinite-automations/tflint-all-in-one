@@ -1,0 +1,61 @@
+name: "Test & Release"
+
+on:
+  push:
+    branches: ["main"]
+  pull_request:
+    branches: ["main"]
+
+permissions:
+  contents: write
+
+jobs:
+  test:
+    name: Test
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        version: ["v0.44.1", "latest"]
+        fail: ["false", "true"]
+      fail-fast: true
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Lint Successfull
+        if: ${{ matrix.fail == 'false' }}
+        uses: "./"
+        with:
+          version: ${{ matrix.version }}
+          directory: "./test/success"
+        continue-on-error: false
+      - name: Lint Failure
+        if: ${{ matrix.fail == 'true' }}
+        id: fail
+        uses: "./"
+        with:
+          version: ${{ matrix.version }}
+          directory: "./test/fail"
+        continue-on-error: true
+      - name: Validate Failure
+        if: ${{ matrix.fail == 'true' && steps.fail.outcome == 'success' }}
+        run: exit 1
+
+  release:
+    name: Release
+    needs:
+      - test
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Install Semantic Release Plugins
+        run: |
+          npm install semantic-release-replace-plugin -D
+          npm install --save-dev semantic-release-major-tag
+      - name: Semantic Release
+        uses: cycjimmy/semantic-release-action@v4
+        with:
+          dry_run: ${{ github.event_name == 'pull_request' }}
+          ci: true
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
