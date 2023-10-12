@@ -15,9 +15,6 @@ on:
   pull_request:
     branches: ["main"]
 
-permissions:
-  contents: write
-
 jobs:
   lint:
     name: Lint
