@@ -1,6 +1,6 @@
 # tflint-all-in-one
 
-![Semantic Release](https://github.com/m4s-b3n/tflint-all-in-one/actions/workflows/test-and-release.yml/badge.svg)
+![Semantic Release](https://github.com/infinite-automations/tflint-all-in-one/actions/workflows/test-and-release.yml/badge.svg)
 
 Run common TFLint commands in a single GitHub action
 
@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Lint Terraform Code
-        uses: "m4s-b3n/tflint-all-in-one@v1.0.0"
+        uses: "infinite-automations/tflint-all-in-one@v1.0.0"
         with:
           directory: "./terraform"
 ```
