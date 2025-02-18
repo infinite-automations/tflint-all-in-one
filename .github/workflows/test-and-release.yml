@@ -15,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        version: ["v0.44.1", "latest"]
+        version: ["v0.51.0", "latest"]
         fail: ["false", "true"]
       fail-fast: true
     steps:

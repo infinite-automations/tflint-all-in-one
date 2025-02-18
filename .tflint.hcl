@@ -1,5 +1,9 @@
+tflint {
+  required_version = ">= 0.50"
+}
+
 config {
-    module = true
+    call_module_type = "all"
     force = false
     disabled_by_default = false
 }
