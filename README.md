@@ -23,7 +23,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
       - name: Lint Terraform Code
-        uses: "infinite-automations/tflint-all-in-one@v1.0.0"
+        uses: "infinite-automations/tflint-all-in-one@v1.0.1"
         with:
           directory: "./terraform"
 ```
