@@ -3,12 +3,12 @@
     "main"
   ],
   "tagFormat": "v${version}",
-  "plugins": [    
+  "plugins": [
     "semantic-release-major-tag",
     [
       "@semantic-release/commit-analyzer",
       {
-        "preset": "angular",
+        "preset": "conventionalcommits",
         "releaseRules": [
           {
             "type": "chore",
@@ -18,7 +18,22 @@
         ]
       }
     ],
-    "@semantic-release/release-notes-generator",
+    [
+      "@semantic-release/release-notes-generator",
+      {
+        "preset": "conventionalcommits",        
+        "presetConfig": {
+          "types": [
+            {
+              "type": "chore",
+              "scope": "deps",
+              "section": "Dependencies",
+              "hidden": false
+            }
+          ]
+        }
+      }
+    ],
     [
       "@semantic-release/changelog",
       {
