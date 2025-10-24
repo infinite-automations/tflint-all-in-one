@@ -1,5 +1,8 @@
 # tflint-all-in-one
 
+> [!CAUTION]
+> Archived in favor of GitHub [super-linter](https://github.com/super-linter/super-linter)
+
 ![Semantic Release](https://github.com/infinite-automations/tflint-all-in-one/actions/workflows/test-and-release.yml/badge.svg)
 
 Run common TFLint commands in a single GitHub action
